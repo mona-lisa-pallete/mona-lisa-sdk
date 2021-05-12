@@ -7,6 +7,7 @@
   "license": "ISC",
   "module": "dist/index.esm.js",
   "main": "dist/index.js",
+  "pkg": "dist/index.pkg.js",
   "source": "src/index.ts",
   "sideEffects": [
     "*.scss",

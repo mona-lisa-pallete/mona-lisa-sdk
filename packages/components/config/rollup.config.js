@@ -26,6 +26,12 @@ export default {
       sourcemap: true,
     },
     {
+      name: "davinciComponents",
+      file: resolveFile(Package.pkg),
+      format: "umd",
+      sourcemap: true,
+    },
+    {
       file: resolveFile(Package.module),
       format: "es",
       sourcemap: true,
