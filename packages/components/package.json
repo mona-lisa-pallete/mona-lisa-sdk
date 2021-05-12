@@ -5,13 +5,23 @@
   "author": "陈炳瑞 <chenbingrui@guorou.tv>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/components.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
+  "module": "dist/index.esm.js",
+  "main": "dist/index.js",
+  "source": "src/index.ts",
+  "sideEffects": [
+    "*.scss",
+    "*.css"
+  ],
+  "types": "./types/index.d.ts",
+  "keywords": [
+    "taro",
+    "taro-ui",
+    "ui"
+  ],
   "files": [
-    "lib"
+    "lib",
+    "dist",
+    "types"
   ],
   "publishConfig": {
     "access": "public"
@@ -21,6 +31,51 @@
     "url": "git@git.shensz.local:davinci/davinci-sdk.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "dev": "yarn run dev:lib",
+    "dev:lib": "tsc --project ./tsconfig.build.json --watch --incremental",
+    "build": "yarn run build:rollup && yarn run build:lib",
+    "build:lib": "tsc --project ./tsconfig.build.json",
+    "build:rollup": "rollup --config ./config/rollup.config.js",
+    "prepublishOnly": "yarn run clean && yarn run build",
+    "lint": "eslint ./src --fix",
+    "lint:style": "stylelint \"src/**/*.scss\" --syntax scss",
+    "lint:style-fix": "stylelint \"src/**/*.scss\" --syntax scss --fix",
+    "test": "cross-env NODE_ENV=test && jest --coverage",
+    "test:ci": "yarn run build:h5 && yarn run test",
+    "test:analyze": "rollup --config ./config/rollup.config.analyze.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "clean": "rimraf .temp dist lib coverage"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "dayjs": "^1.7.7",
+    "lodash": "^4.17.10",
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.14.0",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-json": "^4.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@tarojs/components": "~3.0.2",
+    "@tarojs/react": "~3.0.2",
+    "@tarojs/taro": "~3.0.2",
+    "@types/classnames": "^2.2.9",
+    "@types/node": "^13.11.1",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "rollup": "^2.3.1",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-typescript2": "^0.27.0",
+    "rollup-plugin-visualizer": "^4.0.2",
+    "typescript": "^3.8.3"
+  },
+  "peerDependencies": {
+    "@tarojs/components": ">=3",
+    "@tarojs/react": ">=3",
+    "react": ">=16.13.0",
+    "react-dom": ">=16.13.0"
   }
 }
