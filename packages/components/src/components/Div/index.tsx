@@ -1,8 +1,12 @@
 import React from "react";
-import { View } from "@tarojs/components";
 
-const index = () => {
-  return <View>这是 Div 组件</View>;
+const index = (props) => {
+  return (
+    <div>
+      <h1>这是 Div 组件</h1>
+      {props && props.children}
+    </div>
+  );
 };
 
 export default index;

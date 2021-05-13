@@ -1,8 +1,7 @@
 import React from "react";
-import { View } from "@tarojs/components";
 
 const index = () => {
-  return <View>这是 Text 组件</View>;
+  return <h1>这是 Text 组件</h1>;
 };
 
 export default index;
