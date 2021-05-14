@@ -1,24 +1,15 @@
-import React, { Component } from 'react'
-import { View, Text } from '@tarojs/components'
-import './index.less'
+import React from "react";
+import { DavinciImage, DavinciPage } from "@davinci/components";
 
-export default class Index extends Component {
-
-  componentWillMount () { }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  render () {
-    return (
-      <View className='index'>
-        <Text>Hello world!</Text>
-      </View>
-    )
-  }
-}
+export default () => {
+  return (
+    <DavinciPage>
+      <DavinciImage
+        src={
+          "https://img.alicdn.com/tfs/TB1lle4yQzoK1RjSZFlXXai4VXa-200-64.png"
+        }
+        style={{ width: 400, height: 100 }}
+      ></DavinciImage>
+    </DavinciPage>
+  );
+};

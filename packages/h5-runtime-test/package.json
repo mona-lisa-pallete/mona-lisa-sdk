@@ -35,6 +35,7 @@
   ],
   "author": "",
   "dependencies": {
+    "@davinci/components": "^0.0.1",
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "3.0.8",
     "@tarojs/runtime": "3.0.8",
