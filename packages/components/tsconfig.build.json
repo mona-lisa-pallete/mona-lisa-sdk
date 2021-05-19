@@ -3,9 +3,7 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "es6",
-    "outDir": "./lib"
+    "outDir": "./dist"
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }

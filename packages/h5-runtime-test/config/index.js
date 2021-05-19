@@ -38,7 +38,7 @@ const config = {
     },
   },
   h5: {
-    publicPath: "/",
+    publicPath: "/packages/h5-runtime-test/dist",
     staticDirectory: "static",
     postcss: {
       autoprefixer: {
@@ -54,12 +54,43 @@ const config = {
       },
     },
     webpackChain(chain) {
+      chain.mode("development");
+      // chain.optimization.splitChunks({
+      //   chunks: "all",
+      //   maxInitialRequests: Infinity,
+      //   minSize: 0,
+      //   name: "vendors",
+      //   cacheGroups: {
+      //     // vendors: {
+      //     //   name:  "vendors",
+      //     //   minChunks: 2,
+      //     //   test: (module) => {
+      //     //     // 如果需要自定义配置，PARSE_AST_TYPE 可以从 webpackChain 第三个参数获得
+      //     //     return (
+      //     //       /[\\/]node_modules[\\/]/.test(module.resource) &&
+      //     //       module.miniType !== PARSE_AST_TYPE.COMPONENT
+      //     //     );
+      //     //   },
+      //     //   priority: 10,
+      //     // },
+      //     taro: {
+      //       name: "taro_foo",
+      //       test: (module) => {
+      //         const taroBaseReg = new RegExp(`@tarojs[\\/]taro`);
+      //         return taroBaseReg.test(module.context);
+      //       },
+      //       priority: 100,
+      //     },
+      //   },
+      // });
+
       chain.externals({
         "@davinci/components": "davinciComponents",
         react: "reactVendor.React",
         "react-dom": "reactVendor.ReactDOM",
-        // "@tarojs/components": "taroVendor.components",
-        // "@tarojs/taro": "taroVendor.taro",
+        "@tarojs/components": "taroVendor.components",
+        "@tarojs/taro": "taroVendor.taro",
+        "@tarojs/runtime": "taroVendor.runtime",
       });
     },
   },
