@@ -60,12 +60,7 @@ const config = {
 
       chain.externals({
         "@davinci/components": "davinciComponents",
-        "@davinci/core": "davinciCore",
-        react: "reactVendor.React",
-        "react-dom": "reactVendor.ReactDOM",
-        "@tarojs/components": "taroVendor.components"
-        // "@tarojs/taro": "taroVendor.taro",
-        // "@tarojs/runtime": "taroVendor.runtime"
+        "@davinci/core": "davinciCore"
       });
       chain.optimization.sideEffects(false);
       chain.optimization.splitChunks({
