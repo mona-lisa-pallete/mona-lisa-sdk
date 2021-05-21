@@ -6,7 +6,7 @@
   "homepage": "",
   "license": "ISC",
   "module": "dist/index.esm.js",
-  "main": "dist/index.js",
+  "main": "dist/davinciComponents.dll.js",
   "pkg": "dist/index.pkg.js",
   "vendor": "dist/vendor.js",
   "source": "src/index.ts",

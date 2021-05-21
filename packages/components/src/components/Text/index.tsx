@@ -1,7 +1,8 @@
 import React from "react";
-
-const index = () => {
-  return <h1>这是 Text 组件</h1>;
+import { Text } from "@tarojs/components";
+const index = (props) => {
+  const { contentProp = {}, children } = props || {};
+  return <Text {...contentProp}>{children}</Text>;
 };
 
 export default index;
