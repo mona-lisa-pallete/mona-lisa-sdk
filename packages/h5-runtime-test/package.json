@@ -35,30 +35,32 @@
   ],
   "author": "",
   "dependencies": {
-    "@davinci/components": "^0.0.1",
     "@babel/runtime": "^7.7.7",
+    "@davinci/components": "file:../components",
+    "@davinci/core": "file:../core",
     "@tarojs/components": "^3.2.8",
+    "@tarojs/react": "^3.2.8",
     "@tarojs/runtime": "^3.2.8",
     "@tarojs/taro": "^3.2.8",
-    "@tarojs/react": "^3.2.8",
-    "react-dom": "^16.10.0",
-    "react": "^16.10.0"
+    "react": "^16.10.0",
+    "react-dom": "^16.10.0"
   },
   "devDependencies": {
-    "@types/webpack-env": "^1.13.6",
-    "@types/react": "^16.0.0",
-    "@tarojs/mini-runner": "^3.2.8",
     "@babel/core": "^7.8.0",
+    "@tarojs/cli": "^3.2.8",
+    "@tarojs/mini-runner": "^3.2.8",
     "@tarojs/webpack-runner": "^3.2.8",
+    "@types/react": "^16.0.0",
+    "@types/webpack-env": "^1.13.6",
+    "@typescript-eslint/eslint-plugin": "^2.x",
+    "@typescript-eslint/parser": "^2.x",
     "babel-preset-taro": "^3.2.8",
-    "eslint-config-taro": "^3.2.8",
     "eslint": "^6.8.0",
-    "eslint-plugin-react": "^7.8.2",
+    "eslint-config-taro": "^3.2.8",
     "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^1.6.1",
     "stylelint": "9.3.0",
-    "@typescript-eslint/parser": "^2.x",
-    "@typescript-eslint/eslint-plugin": "^2.x",
     "typescript": "^3.7.0"
   }
 }
