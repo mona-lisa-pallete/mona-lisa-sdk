@@ -1,8 +1,8 @@
 import React from "react";
 import { Text } from "@tarojs/components";
 const index = (props) => {
-  const { contentProp = {}, children } = props || {};
-  return <Text {...contentProp}>{children}</Text>;
+  const { children, ...p } = props || {};
+  return <Text {...p}>{children}</Text>;
 };
 
 export default index;
