@@ -46,40 +46,39 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "clean": "rimraf .temp dist lib coverage"
   },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
   "dependencies": {
     "@davinci/core": "file:../core",
-    "classnames": "^2.2.6",
-    "dayjs": "^1.7.7",
-    "lodash": "^4.17.10",
-    "prop-types": "^15.7.2"
+    "@babel/runtime": "^7.7.7",
+    "@tarojs/components": "3.2.8",
+    "@tarojs/runtime": "3.2.8",
+    "@tarojs/taro": "3.2.8",
+    "@tarojs/react": "3.2.8",
+    "react-dom": "^17.0.0",
+    "react": "^17.0.0"
   },
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.14.0",
-    "@rollup/plugin-commonjs": "^11.0.2",
-    "@rollup/plugin-json": "^4.0.2",
-    "@rollup/plugin-node-resolve": "^7.1.1",
-    "@tarojs/components": "^3.2.8",
-    "@tarojs/react": "^3.2.8",
-    "@tarojs/taro": "^3.2.8",
-    "@types/classnames": "^2.2.9",
-    "@types/node": "^13.11.1",
-    "@types/react": "^16.9.23",
-    "@types/react-dom": "^16.9.5",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
-    "rollup": "^2.3.1",
-    "rollup-plugin-copy": "^3.3.0",
-    "rollup-plugin-typescript2": "^0.27.0",
-    "rollup-plugin-visualizer": "^4.0.2",
-    "ts-loader": "^9.1.2",
-    "typescript": "^3.8.3",
+    "@types/webpack-env": "^1.13.6",
+    "@types/react": "^17.0.2",
+    "@tarojs/mini-runner": "3.2.8",
+    "@babel/core": "^7.8.0",
+    "@tarojs/webpack-runner": "3.2.8",
+    "babel-preset-taro": "3.2.8",
+    "eslint-config-taro": "3.2.8",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "stylelint": "9.3.0",
+    "@typescript-eslint/parser": "^4.15.1",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "typescript": "^4.1.0",
     "webpack": "^5.37.0",
-    "webpack-cli": "^4.7.0"
-  },
-  "peerDependencies": {
-    "@tarojs/components": ">=3",
-    "@tarojs/react": ">=3",
-    "react": ">=16.13.0",
-    "react-dom": ">=16.13.0"
+    "webpack-cli": "^4.7.0",
+    "ts-loader": "^9.1.2"
   }
 }

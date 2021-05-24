@@ -26,7 +26,7 @@
     "build:core": "webpack --config ./webpack.core.config.js"
   },
   "devDependencies": {
-    "react": "^16.13.0",
+    "react": "^17.0.0",
     "ts-loader": "^9.2.1",
     "webpack": "^5.37.1",
     "webpack-cli": "^4.7.0"
