@@ -47,6 +47,7 @@
     "clean": "rimraf .temp dist lib coverage"
   },
   "dependencies": {
+    "@davinci/core": "file:../core",
     "classnames": "^2.2.6",
     "dayjs": "^1.7.7",
     "lodash": "^4.17.10",

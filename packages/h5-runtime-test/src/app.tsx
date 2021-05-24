@@ -1,20 +1,17 @@
-import { Component } from 'react'
-import './app.less'
+import React, { useReducer } from "react";
+import { AppContext } from "@davinci/core";
+import "./app.less";
 
-class App extends Component {
+const App = props => {
+  const [state, dispatch] = useReducer((state, action) => {
+    return { ...state, ...action };
+  }, {});
 
-  componentDidMount () {}
+  return (
+    <AppContext.Provider value={{ state, dispatch }}>
+      {props.children}
+    </AppContext.Provider>
+  );
+};
 
-  componentDidShow () {}
-
-  componentDidHide () {}
-
-  componentDidCatchError () {}
-
-  // this.props.children 是将要会渲染的页面
-  render () {
-    return this.props.children
-  }
-}
-
-export default App
+export default App;
