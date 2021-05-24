@@ -5,7 +5,8 @@
   "author": "陈炳瑞 <chenbingrui@guorou.tv>",
   "homepage": "",
   "license": "ISC",
-  "main": "dist/davinciCore.dll.js",
+  "main": "lib/davinciCore.dll.js",
+  "module": "lib/davinciCore.esm.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -25,6 +26,7 @@
     "build:core": "webpack --config ./webpack.core.config.js"
   },
   "devDependencies": {
+    "react": "^17.0.0",
     "ts-loader": "^9.2.1",
     "webpack": "^5.37.1",
     "webpack-cli": "^4.7.0"

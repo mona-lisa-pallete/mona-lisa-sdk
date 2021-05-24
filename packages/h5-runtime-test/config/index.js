@@ -1,5 +1,8 @@
-const taroBaseReg = new RegExp(`@tarojs[\\/]`);
+/* eslint-disable import/no-commonjs */
+const path = require("path");
 
+const taroBaseReg = new RegExp(`@tarojs[\\/]`);
+console.log("__dirname", __dirname);
 const config = {
   projectName: "h5-runtime-test",
   date: "2021-5-13",
@@ -55,12 +58,20 @@ const config = {
         }
       }
     },
+    devServer: {
+      contentBase: [path.join(__dirname, "..", "link")]
+    },
     webpackChain(chain) {
       chain.mode("development");
 
       chain.externals({
         "@davinci/components": "davinciComponents",
-        "@davinci/core": "davinciCore"
+        "@davinci/core": "davinciCore",
+        react: "reactVendor.React",
+        "react-dom": "reactVendor.ReactDOM",
+        "@tarojs/components": "taroVendor.components",
+        // "@tarojs/taro": "taroVendor.taro",
+        "@tarojs/runtime": "taroVendor.runtime"
       });
       chain.optimization.sideEffects(false);
       chain.optimization.splitChunks({
