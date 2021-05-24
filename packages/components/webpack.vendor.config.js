@@ -25,7 +25,7 @@ module.exports = {
   },
   output: {
     filename: "[name].dll.js",
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "lib"),
     library: "[name]",
   },
 };

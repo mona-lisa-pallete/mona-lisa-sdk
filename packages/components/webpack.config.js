@@ -11,14 +11,15 @@ module.exports = {
     "@tarojs/components": "taroVendor.components",
     "@tarojs/taro": "taroVendor.taro",
     "@tarojs/runtime": "taroVendor.runtime",
+    "@davinci/core": "davinciCore",
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx", ".json"],
+    extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
   module: {
     rules: [
       {
-        test: /\.(j|t)sx?$/,
+        test: /\.tsx?$/,
         include: [path.join(__dirname, "src")],
         use: {
           loader: "ts-loader",
@@ -27,11 +28,11 @@ module.exports = {
     ],
   },
   // devtool: "eval",
-  // devtool: "source-map",
+  devtool: "inline-source-map",
   mode: "development",
   output: {
     filename: "[name].dll.js",
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "lib"),
     library: "[name]",
   },
 };

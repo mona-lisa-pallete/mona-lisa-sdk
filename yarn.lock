@@ -1220,6 +1220,7 @@
 "@davinci/components@file:packages/components":
   version "0.0.1"
   dependencies:
+    "@davinci/core" "file:../../../../Library/Caches/Yarn/v6/npm-@davinci-components-0.0.1-e245e4c9-f86d-462e-a5a0-99333bbc6313-1621777804975/node_modules/@davinci/core"
     classnames "^2.2.6"
     dayjs "^1.7.7"
     lodash "^4.17.10"

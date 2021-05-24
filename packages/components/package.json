@@ -5,12 +5,8 @@
   "author": "陈炳瑞 <chenbingrui@guorou.tv>",
   "homepage": "",
   "license": "ISC",
-  "module": "dist/index.esm.js",
-  "main": "dist/davinciComponents.dll.js",
-  "pkg": "dist/index.pkg.js",
-  "vendor": "dist/vendor.js",
-  "source": "src/index.ts",
-  "vendorSource": "src/vendor.ts",
+  "module": "lib/davinciComponents.esm.js",
+  "main": "lib/davinciComponents.dll.js",
   "sideEffects": [
     "*.scss",
     "*.css"
