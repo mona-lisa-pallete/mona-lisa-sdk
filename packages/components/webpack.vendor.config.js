@@ -7,7 +7,6 @@ module.exports = {
     reactVendor: path.join(__dirname, "src", "vendor.ts"),
     taroVendor: path.join(__dirname, "src", "taro.ts"),
   },
-
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
@@ -16,7 +15,6 @@ module.exports = {
       },
     }),
   ],
-
   // devtool: "eval",
   // devtool: "source-map",
   mode: "development",
