@@ -4,14 +4,13 @@ const taroBaseReg = /@tarojs[\\/][a-z]+/;
 module.exports = {
   entry: {
     davinciComponents: path.join(__dirname, "src", "index.ts"),
-    antd: path.join(__dirname, "src", "antd.ts")
   },
   externals: {
     "react-dom": "reactVendor.ReactDOM",
     react: "reactVendor.React",
     "@tarojs/components": "taroVendor.components",
     "@tarojs/taro": "taroVendor.taro",
-    "@tarojs/runtime": "taroVendor.runtime",
+    "@tarojs/components/loader": "taroVendor",
     "@davinci/core": "davinciCore",
   },
   resolve: {

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {
   applyPolyfills,
   defineCustomElements,
-} from '@davinci/components';
+} from '@tarojs/components/loader';
 
 applyPolyfills().then(function () {
   defineCustomElements(window);
