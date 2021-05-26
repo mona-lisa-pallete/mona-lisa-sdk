@@ -1175,7 +1175,7 @@
   version "0.0.1"
   dependencies:
     "@babel/runtime" "^7.7.7"
-    "@davinci/core" "file:../../Library/Caches/Yarn/v6/npm-@davinci-components-0.0.1-30e58ef0-7fc4-4606-8a29-4a8ca61df401-1621944468223/node_modules/@davinci/core"
+    "@davinci/core" "file:../../../../Library/Caches/Yarn/v6/npm-@davinci-components-0.0.1-c0591e0f-46bf-401c-8959-7d62c45737de-1622004368157/node_modules/@davinci/core"
     "@tarojs/components" "3.2.8"
     "@tarojs/react" "3.2.8"
     "@tarojs/runtime" "3.2.8"
@@ -8846,7 +8846,7 @@ json2mq@^0.2.0:
   dependencies:
     string-convert "^0.2.0"
 
-json3@^3.3.2:
+json3@^3.3.2, json3@^3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/json3/-/json3-3.3.3.tgz#7fc10e375fc5ae42c4705a5cc0aa6f62be305b81"
   integrity sha512-c7/8mbUsKigAbLkD5B010BK4D9LZm7A1pNItkEwiUZRpIN66exu/e7YQWysGun+TRKaJp8MhemM+VkfWv42aCA==
@@ -11957,6 +11957,20 @@ react-dom@^17.0.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.2"
+
+react-hot-loader@^4.13.0:
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.13.0.tgz#c27e9408581c2a678f5316e69c061b226dc6a202"
+  integrity sha512-JrLlvUPqh6wIkrK2hZDfOyq/Uh/WeVEr8nc7hkn2/3Ul0sx1Kr5y4kOGNacNRoj7RhwLNcQ3Udf1KJXrqc0ZtA==
+  dependencies:
+    fast-levenshtein "^2.0.6"
+    global "^4.3.0"
+    hoist-non-react-statics "^3.3.0"
+    loader-utils "^1.1.0"
+    prop-types "^15.6.1"
+    react-lifecycles-compat "^3.0.4"
+    shallowequal "^1.1.0"
+    source-map "^0.7.3"
 
 react-is@^16.12.0, react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"

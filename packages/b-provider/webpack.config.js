@@ -3,6 +3,11 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: path.resolve(__dirname, './src/index.js'),
+  externals: {
+    '@davinci/components': 'davinciComponents',
+    react: 'reactVendor.React',
+    'react-dom': 'reactVendor.ReactDOM',
+  },
   module: {
     rules: [
       {
