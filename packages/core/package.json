@@ -6,7 +6,7 @@
   "homepage": "",
   "license": "ISC",
   "main": "lib/davinciCore.dll.js",
-  "module": "lib/davinciCore.esm.js",
+  "module": "esm/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -23,6 +23,7 @@
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
+    "dev": "tsc --project ./tsconfig.build.json --watch --incremental",
     "build:core": "webpack --config ./webpack.core.config.js"
   },
   "devDependencies": {

@@ -4,7 +4,7 @@ const taroBaseReg = /@tarojs[\\/][a-z]+/;
 
 module.exports = {
   entry: {
-    reactVendor: path.join(__dirname, "src", "antd.ts"),
+    antdVendor: path.join(__dirname, "src", "antd.ts"),
     taroVendor: path.join(__dirname, "src", "taro.ts"),
   },
   externals: {

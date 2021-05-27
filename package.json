@@ -6,7 +6,7 @@
   },
   "scripts": {
     "link:clearn": "rm -rf ./packages/b-provider/dist/js ./packages/components/lib/ && mkdir ./packages/components/lib ./packages/b-provider/dist/js",
-    "link:set": "ln `pwd`/packages/core/lib/*.js `pwd`/packages/components/lib && ln `pwd`/packages/components/lib/*.js `pwd`/packages/b-provider/dist/js/"
+    "link:set": "ln -s `pwd`/packages/core/lib/*.js `pwd`/packages/components/lib && ln -s `pwd`/packages/components/lib/*.js `pwd`/packages/b-provider/dist/js/ && ln -s `pwd`/packages/components/lib/*.js `pwd`/packages/h5-runtime-test/link/"
   },
   "workspaces": [
     "packages/*"

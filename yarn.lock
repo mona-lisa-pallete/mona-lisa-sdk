@@ -1171,22 +1171,6 @@
   resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-3.4.0.tgz#c3c5ae543c897caa9c2a68630bed355be5f9990f"
   integrity sha512-JZButFdZ1+/xAfpguQHoabIXkcqRRKpMrWKBkpEZZyxfY9C1DpADFB8PEqGSTeFr135SaTRfKqGKx5xSCLI7ZQ==
 
-"@davinci/components@file:packages/components":
-  version "0.0.1"
-  dependencies:
-    "@babel/runtime" "^7.7.7"
-    "@davinci/core" "file:../../../../Library/Caches/Yarn/v6/npm-@davinci-components-0.0.1-c0591e0f-46bf-401c-8959-7d62c45737de-1622004368157/node_modules/@davinci/core"
-    "@tarojs/components" "3.2.8"
-    "@tarojs/react" "3.2.8"
-    "@tarojs/runtime" "3.2.8"
-    "@tarojs/taro" "3.2.8"
-    antd "4.15.5"
-    react "^17.0.0"
-    react-dom "^17.0.0"
-
-"@davinci/core@file:packages/core":
-  version "0.0.1"
-
 "@discoveryjs/json-ext@^0.5.0":
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.3.tgz#90420f9f9c6d3987f176a19a7d8e764271a2f55d"
