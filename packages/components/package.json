@@ -31,7 +31,6 @@
   },
   "scripts": {
     "dev": "yarn run dev:lib",
-    "serve:lib": "PORT=11111 serve ./lib",
     "dev:lib": "tsc --project ./tsconfig.build.json --watch --incremental",
     "build": "yarn run build:rollup && yarn run build:lib",
     "build:lib": "tsc --project ./tsconfig.build.json",

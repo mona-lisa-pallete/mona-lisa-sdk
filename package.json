@@ -4,6 +4,9 @@
   "devDependencies": {
     "lerna": "^3.22.1"
   },
+  "scripts": {
+    "serve:resources": "PORT=11111 serve"
+  },
   "workspaces": [
     "packages/*"
   ]
