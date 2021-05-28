@@ -55,7 +55,7 @@ function DocViewer(props: docProps) {
                 file={iframeSrc}
                 onLoadSuccess={onDocumentLoadSuccess}
               >
-                {Array.from(new Array(numPages), (el, index) => (
+                {Array.from(new Array(numPages), (_, index) => (
                   <Page
                     width={375}
                     key={`page_${index + 1}`}
