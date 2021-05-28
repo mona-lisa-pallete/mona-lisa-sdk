@@ -15,5 +15,11 @@
     "resolveJsonModule": true
   },
   "compileOnSave": false,
-  "exclude": ["node_modules/*", "packages/dist/*", "packages/lib/*"]
+  "exclude": [
+    "node_modules/*",
+    "packages/dist/*",
+    "packages/lib/*",
+    "**/*.spec.ts",
+    "**/*.spec.js"
+  ]
 }

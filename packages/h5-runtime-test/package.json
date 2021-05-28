@@ -35,8 +35,8 @@
   ],
   "author": "",
   "dependencies": {
-    "@davinci/components": "file:../components",
-    "@davinci/core": "file:../core",
+    "@davinci/components": "^0.0.1",
+    "@davinci/core": "^0.0.1",
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "3.2.8",
     "@tarojs/runtime": "3.2.8",

@@ -5,7 +5,7 @@
   "author": "陈炳瑞 <chenbingrui@guorou.tv>",
   "homepage": "",
   "license": "ISC",
-  "module": "lib/davinciComponents.esm.js",
+  "module": "esm/index.js",
   "main": "lib/davinciComponents.dll.js",
   "sideEffects": [
     "*.scss",
@@ -33,10 +33,9 @@
     "dev": "yarn run dev:lib",
     "serve:lib": "PORT=11111 serve ./lib",
     "dev:lib": "tsc --project ./tsconfig.build.json --watch --incremental",
-    "build": "yarn run build:rollup && yarn run build:lib",
+    "build": "webpack --config ./webpack.config.js",
     "build:lib": "tsc --project ./tsconfig.build.json",
-    "build:rollup": "rollup --config ./config/rollup.config.js",
-    "build:vendor": "webpack --config ./webpack.vendor.config.js && webpack --config ./webpack.config.js",
+    "build:all": "webpack --config ./webpack.config.js && webpack --config ./webpack.react.config.js && webpack --config ./webpack.vendor.config.js",
     "prepublishOnly": "yarn run clean && yarn run build",
     "lint": "eslint ./src --fix",
     "lint:style": "stylelint \"src/**/*.scss\" --syntax scss",
@@ -54,14 +53,15 @@
   ],
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "@davinci/core": "file:../core",
+    "@davinci/core": "^0.0.1",
     "@tarojs/components": "3.2.8",
     "@tarojs/react": "3.2.8",
     "@tarojs/runtime": "3.2.8",
     "@tarojs/taro": "3.2.8",
+    "antd": "4.15.5",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "antd": "4.15.5"
+    "react-pdf": "^5.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
