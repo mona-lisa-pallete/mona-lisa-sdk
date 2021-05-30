@@ -10,9 +10,15 @@ const rawAction = {
       fn: async function (args) {
         const { dispatch } = args;
         console.log(args);
+        const { modalId } = args.props;
+        const { [modalId]: curState } = args.stateRef.current;
         // const res = await core.login(props.url, props.type);
         // console.log("async res: ", res);
-        dispatch({ [args.props.modalId]: { isOpen: true } });
+        dispatch({
+          [modalId]: {
+            isOpen: curState ? !curState.isOpen : true,
+          },
+        });
       },
       prop: { modalId: "id_1", url: "path/a", type: "h5" },
     },
@@ -53,13 +59,13 @@ const Foo = React.memo((props: any) => {
 /**
  * 构建真正的action 字段
  */
-function initAction(dispatch: any): { [key: string]: any } {
+function initAction(dispatch: any, stateRef: any): { [key: string]: any } {
   return Object.keys(rawAction).reduce((res, id) => {
     const curActions = rawAction[id];
     res[id] = (e) => {
       curActions.forEach((_action) => {
         const { fn, prop } = _action;
-        fn({ id, e, props: prop, dispatch });
+        fn({ id, e, props: prop, dispatch, stateRef });
       });
     };
     return res;
@@ -70,8 +76,10 @@ export default () => {
   const context = useContext(core.AppContext) as any;
   const { state, dispatch } = context;
   const actionWrapRef = useRef<{ [key: string]: any }>();
+  const stateRef = useRef<{ [key: string]: any }>();
+  stateRef.current = state;
   if (!actionWrapRef.current) {
-    actionWrapRef.current = initAction(dispatch);
+    actionWrapRef.current = initAction(dispatch, stateRef);
   }
   const action = actionWrapRef.current;
   return (
