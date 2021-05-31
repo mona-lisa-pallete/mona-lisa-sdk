@@ -1,7 +1,7 @@
 const path = require("path");
 
 const compName = process.env.COMP;
-
+const time = (+new Date()).toString();
 module.exports = {
   entry: path.join(__dirname, "src", "components", compName),
   externals: {
@@ -32,7 +32,7 @@ module.exports = {
   mode: "development",
   output: {
     filename: "index.js",
-    path: path.join(__dirname, "lib", compName),
+    path: path.join(__dirname, "lib", compName, time),
     library: compName,
   },
 };
