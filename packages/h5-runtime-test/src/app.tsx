@@ -2,9 +2,9 @@ import React, { useReducer } from "react";
 import { AppContext } from "@davinci/core";
 import "./app.less";
 
-const App = props => {
-  const [state, dispatch] = useReducer((state, action) => {
-    return { ...state, ...action };
+const App = (props) => {
+  const [state, dispatch] = useReducer((s, action) => {
+    return { ...s, ...action };
   }, {});
 
   return (

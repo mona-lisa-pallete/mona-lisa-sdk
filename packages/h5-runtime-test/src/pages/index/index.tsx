@@ -76,6 +76,15 @@ export default () => {
   const action = actionWrapRef.current;
   return (
     <UI.DavinciPage>
+      <UI.DavinciDocViewer
+        officeSrc="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fstatic.guorou.net%2Ftiku%2F2021%E5%AF%926%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6%E7%B2%BE%E8%8B%B1%E7%8F%AD%E8%AE%B2%E4%B9%89-%E7%AC%AC1%E8%AE%B2-%E5%88%86%E6%95%B0%E8%AE%A1%E7%AE%97%E7%BB%BC%E5%90%88.docx"
+        {...{
+          style: {
+            height: "50%",
+            width: "50%",
+          },
+        }}
+      />
       <UI.DavinciDiv>
         <pre>{JSON.stringify(state, null, 2)}</pre>
       </UI.DavinciDiv>
@@ -87,7 +96,7 @@ export default () => {
       <UI.DavinciImage
         id="id_1"
         onClick={action["bca84122a2a498e30300bce50b2ca490"]}
-        contentProp={{
+        {...{
           src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
         }}
       ></UI.DavinciImage>
