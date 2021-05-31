@@ -31,7 +31,6 @@
   },
   "scripts": {
     "dev": "yarn run dev:lib",
-    "serve:lib": "PORT=11111 serve ./lib",
     "dev:lib": "tsc --project ./tsconfig.build.json --watch --incremental",
     "build": "webpack --config ./webpack.config.js",
     "build:lib": "tsc --project ./tsconfig.build.json",
