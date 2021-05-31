@@ -1,26 +1,20 @@
 const path = require("path");
-const webpack = require("webpack");
+
+const compName = process.env.COMP;
 
 module.exports = {
-  entry: {
-    davinciCore: path.join(__dirname, "src", "index.ts"),
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      "process.env": {
-        TARO_ENV: JSON.stringify(process.env.type),
-      },
-    }),
-  ],
+  entry: path.join(__dirname, "src", "components", compName),
   externals: {
     "react-dom": "reactVendor.ReactDOM",
     react: "reactVendor.React",
     "@tarojs/components": "taroVendor.components",
     "@tarojs/taro": "taroVendor.taro",
-    "@tarojs/runtime": "taroVendor.runtime",
+    "@tarojs/components/loader": "taroVendor",
+
+    "@davinci/core": "davinciCore",
   },
   resolve: {
-    extensions: [".ts", ".js", ".tsx", ".jsx"],
+    extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
   module: {
     rules: [
@@ -37,8 +31,8 @@ module.exports = {
   devtool: "inline-source-map",
   mode: "development",
   output: {
-    filename: "[name].dll.js",
-    path: path.join(__dirname, "lib"),
-    library: "[name]",
+    filename: "index.js",
+    path: path.join(__dirname, "lib", compName),
+    library: compName,
   },
 };

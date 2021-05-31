@@ -24,7 +24,8 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "dev": "tsc --project ./tsconfig.build.json --watch --incremental",
-    "build:core": "webpack --config ./webpack.core.config.js"
+    "build:core:h5": "type=h5 webpack --config ./webpack.core.config.js",
+    "build:core:weapp": "type=weapp webpack --config ./webpack.core.config.js"
   },
   "devDependencies": {
     "react": "^17.0.0",

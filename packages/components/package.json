@@ -33,6 +33,7 @@
     "dev": "yarn run dev:lib",
     "dev:lib": "tsc --project ./tsconfig.build.json --watch --incremental",
     "build": "webpack --config ./webpack.config.js",
+    "build:comp": "node build.js",
     "build:lib": "tsc --project ./tsconfig.build.json",
     "build:all": "webpack --config ./webpack.config.js && webpack --config ./webpack.react.config.js && webpack --config ./webpack.vendor.config.js",
     "prepublishOnly": "yarn run clean && yarn run build",

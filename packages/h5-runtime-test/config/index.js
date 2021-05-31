@@ -66,7 +66,7 @@ const config = {
 
       chain.externals({
         // "@davinci/components": "davinciComponents",
-        // "@davinci/core": "davinciCore",
+        "@davinci/core": "davinciCore",
         react: "reactVendor.React",
         "react-dom": "reactVendor.ReactDOM",
         "@tarojs/components": "taroVendor.components",

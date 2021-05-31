@@ -1,4 +1,5 @@
 import qs from "query-string";
+import Taro from "@tarojs/taro";
 import { IS_H5 } from ".";
 
 export const getAppInstancePath = () => {
