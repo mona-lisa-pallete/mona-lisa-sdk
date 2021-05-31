@@ -1,8 +1,8 @@
-export { default as DavinciPage } from "./components/Page";
-export { default as DavinciDiv } from "./components/Div";
-export { default as DavinciImage } from "./components/Image";
-export { default as DavinciText } from "./components/Text";
-export { default as DavinciButton } from "./components/Button";
-export { default as DavinciModal } from "./components/Modal";
-export { default as DavinciDocViewer } from "./components/DocViewer";
-export { default as DavinciVideoViewer } from "./components/VideoViewer";
+export { default as DvPage } from "./components/DvPage";
+export { default as DvDiv } from "./components/DvDiv";
+export { default as DvImage } from "./components/DvImage";
+export { default as DvText } from "./components/DvText";
+export { default as DvButton } from "./components/DvButton";
+export { default as DvModal } from "./components/DvModal";
+export { default as DvDocViewer } from "./components/DvDocViewer";
+export { default as DvVideoViewer } from "./components/DvVideoViewer";
