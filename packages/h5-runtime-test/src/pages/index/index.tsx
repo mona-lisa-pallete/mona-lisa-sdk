@@ -1,120 +1,150 @@
 import React, { useContext, useRef } from "react";
-import * as UI from "@davinci/components";
 import * as core from "@davinci/core";
-
-import { Button, View } from "@tarojs/components";
-
 const rawAction = {
-  /* 打开新页面-bb */ bca84122a2a498e30300bce50b2ca490: [
-    {
-      fn: async function (args) {
-        const { dispatch } = args;
-        console.log(args);
-        const { modalId } = args.props;
-        const { [modalId]: curState } = args.stateRef.current;
-        // const res = await core.login(props.url, props.type);
-        // console.log("async res: ", res);
-        dispatch({
-          [modalId]: {
-            isOpen: curState ? !curState.isOpen : true,
-          },
-        });
-      },
-      prop: { modalId: "id_1", url: "path/a", type: "h5" },
+  /* 打开新页面-openPage */ cc: {
+    fn: () => {},
+    prop: { url: "path/a", type: "h5" },
+  },
+  /* 登录页面test-login */ bb: {
+    fn: async function (props) {
+      const res = await core.login(props.phone, props.password);
+      console.log("async res: ", res);
     },
-  ],
-  /* 打开新页面-bb */ b: [
-    {
-      fn: async function (args) {
-        const { dispatch, props } = args;
-        dispatch({ [props.modalId]: { isOpen: false } });
-
-        const res = await core.login(props.url, props.type);
-        console.log("async res: ", res);
-      },
-      prop: { modalId: "id_1", url: "path/a", type: "h5" },
+    prop: { phone: "${store.user.phone}", password: "${store.user.password}" },
+  },
+  /* 登录-login */ bca84122a2a498e30300bce50b2ca490: {
+    fn: async function (props) {
+      const res = await core.login(props.phone, props.password);
+      console.log("async res: ", res);
     },
-  ],
-
-  id1_id2: [
-    {
-      fn: async function (args) {
-        console.log("1", args);
-      },
-      prop: { url: "path/a", type: "h5" },
-    },
-    {
-      fn: async function (args) {
-        console.log("2", args);
-      },
-      prop: { url: "path/a", type: "h5" },
-    },
-  ],
+    prop: { phone: "${store.user.phone}", password: "${store.user.password}" },
+  },
 };
-
-const Foo = React.memo((props: any) => {
-  return <View onClick={props.onClick}>{+new Date()}</View>;
-});
-
-/**
- * 构建真正的action 字段
- */
-function initAction(dispatch: any, stateRef: any): { [key: string]: any } {
-  return Object.keys(rawAction).reduce((res, id) => {
-    const curActions = rawAction[id];
+/**       * 避免因运行时的动态函数组件导致'事件'每次变化，这里使用 dsl 编译时确定 function       */ const finalAction =
+  {
+    bb_cc: [rawAction["bb"], rawAction["cc"]],
+    cc: [rawAction["cc"]],
+    bca84122a2a498e30300bce50b2ca490: [
+      rawAction["bca84122a2a498e30300bce50b2ca490"],
+    ],
+  };
+/**       * 构建真正的action 字段       */ function initAction(dispatch: any): {
+  [key: string]: any;
+} {
+  return Object.keys(finalAction).reduce((res, id) => {
+    const curActions = finalAction[id];
     res[id] = (e) => {
       curActions.forEach((_action) => {
         const { fn, prop } = _action;
-        fn({ id, e, props: prop, dispatch, stateRef });
+        fn({ id, e, props: prop, dispatch });
       });
     };
     return res;
   }, {});
 }
-
 export default () => {
-  const [UI_DLL, isReady] = core.useWidget([
-    "https://static-zy-com.oss-cn-hangzhou.aliyuncs.com/davinci/component/DvImage/2021-05-30/index.js",
+  const [UI, isReady] = core.useWidget([
+    "https://static.guorou.net/davinci/component/DvImage/1622446363668/index.js",
+    "https://static.guorou.net/davinci/component/DvDiv/1622446464812/index.js",
+    "https://static.guorou.net/davinci/component/DvPage/1622446449933/index.js",
+    "https://static.guorou.net/davinci/component/DvDocViewer/1622528317317/index.js",
+    "https://static.guorou.net/davinci/component/DvVideoViewer/1622529288052/index.js",
   ]);
   const context = useContext(core.AppContext) as any;
   const { state, dispatch } = context;
   const actionWrapRef = useRef<{ [key: string]: any }>();
-  const stateRef = useRef<{ [key: string]: any }>();
+  if (!actionWrapRef.current) {
+    actionWrapRef.current = initAction(dispatch);
+  }
+  const action = actionWrapRef.current;
   if (!isReady) {
     return "加载中..";
   }
-  stateRef.current = state;
-  if (!actionWrapRef.current) {
-    actionWrapRef.current = initAction(dispatch, stateRef);
-  }
-  const action = actionWrapRef.current;
   return (
-    <UI.DavinciPage>
-      <UI.DavinciDocViewer
-        officeSrc="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fstatic.guorou.net%2Ftiku%2F2021%E5%AF%926%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6%E7%B2%BE%E8%8B%B1%E7%8F%AD%E8%AE%B2%E4%B9%89-%E7%AC%AC1%E8%AE%B2-%E5%88%86%E6%95%B0%E8%AE%A1%E7%AE%97%E7%BB%BC%E5%90%88.docx"
-        {...{
-          style: {
-            height: "50%",
-            width: "50%",
-          },
-        }}
-      />
-      <UI.DavinciDiv>
-        <pre>{JSON.stringify(state, null, 2)}</pre>
-      </UI.DavinciDiv>
-      <Button onClick={action["id1_id2"]}>
-        bca84122a2a498e30300bce50b2ca490
-      </Button>
-      <Button onClick={action["ccccccccc"]}>ccccccccc</Button>
-      <Foo onClick={action["b"]}>bbbbbbbbbbb</Foo>
-      <UI_DLL.DvImage
-        id="id_1"
-        onClick={action["bca84122a2a498e30300bce50b2ca490"]}
-        {...{
-          src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
-        }}
-      ></UI_DLL.DvImage>
-      <UI.DavinciModal id="id_1">hello from parent</UI.DavinciModal>
-    </UI.DavinciPage>
+    <React.Fragment>
+      {" "}
+      <UI.DvPage
+        id="28"
+        onClick={action["bb_cc"]}
+        {...{ style: { position: "relative" } }}
+      >
+        <UI.DvImage
+          id="1"
+          onLoad={action["cc"]}
+          onClick={action["bca84122a2a498e30300bce50b2ca490"]}
+          {...{
+            src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
+          }}
+        ></UI.DvImage>
+        <UI.DvDocViewer
+          id="31"
+          {...{
+            style: { height: "50%", width: "50%" },
+            list: [
+              {
+                name: "四年级英语深度课程EXCEL",
+                src: "https://static.guorou.net/davinci/test_doc/wps.xls",
+              },
+              {
+                name: "四年级英语深度课程PDF",
+                src: "https://static.guorou.net/davinci/test_doc/wps.pdf",
+              },
+              {
+                name: "四年级英语深度课程PPT",
+                src: "https://static.guorou.net/davinci/test_doc/wps.ppt",
+              },
+              {
+                name: "四年级英语深度课程WORD",
+                src: "https://static.guorou.net/davinci/test_doc/wps.doc",
+              },
+            ],
+          }}
+        ></UI.DvDocViewer>
+        <UI.DvVideoViewer
+          id="1"
+          {...{
+            src: "https://static.guorou.net/grow/grow_mp/video.mp4",
+            style: { height: "320px" },
+          }}
+        ></UI.DvVideoViewer>
+        <UI.DvDiv
+          id="102"
+          {...{ style: { height: "800px", border: "1px solid" } }}
+        ></UI.DvDiv>
+      </UI.DvPage>{" "}
+      <React.Fragment>
+        {" "}
+        {/* fixed content */}{" "}
+        <UI.DvDiv id="29" {...{ style: { bottom: 0, position: "fixed" } }}>
+          <UI.DvImage
+            id="21"
+            {...{
+              style: { width: "100px", height: "100px" },
+              src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
+            }}
+          ></UI.DvImage>
+          <UI.DvImage
+            id="23"
+            {...{
+              style: { width: "100px", height: "100px" },
+              src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
+            }}
+          ></UI.DvImage>
+        </UI.DvDiv>
+        <UI.DvImage
+          id="22"
+          {...{
+            style: {
+              position: "fixed",
+              top: 0,
+              right: 0,
+              width: "100px",
+              height: "100px",
+            },
+            src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
+          }}
+        ></UI.DvImage>{" "}
+      </React.Fragment>{" "}
+    </React.Fragment>
   );
 };

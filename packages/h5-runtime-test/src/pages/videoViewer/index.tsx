@@ -4,16 +4,15 @@ import { Button } from "@tarojs/components";
 
 export default () => {
   return (
-    <UI.DavinciPage>
+    <UI.DvPage>
       <Button>按钮1</Button>
-      <UI.DavinciVideoViewer
+      <UI.DvVideoViewer
         src="https://static.guorou.net/grow/grow_mp/video.mp4"
         style={{
           height: "320px",
-          position: "relative",
         }}
       />
       <Button>按钮2</Button>
-    </UI.DavinciPage>
+    </UI.DvPage>
   );
 };

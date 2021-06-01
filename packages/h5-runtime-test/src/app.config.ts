@@ -3,6 +3,7 @@ export default {
     "pages/index/index",
     "pages/docViewer/index",
     "pages/videoViewer/index",
+    "pages/previewUIDll/index",
   ],
   window: {
     backgroundTextStyle: "light",
