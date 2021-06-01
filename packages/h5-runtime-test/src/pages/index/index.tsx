@@ -43,7 +43,13 @@ const rawAction = {
   }, {});
 }
 export default () => {
-  const [UI, isReady] = core.useWidget([]);
+  const [UI, isReady] = core.useWidget([
+    "https://static.guorou.net/davinci/component/DvImage/1622446363668/index.js",
+    "https://static.guorou.net/davinci/component/DvDiv/1622446464812/index.js",
+    "https://static.guorou.net/davinci/component/DvPage/1622446449933/index.js",
+    "https://static.guorou.net/davinci/component/DvDocViewer/1622528317317/index.js",
+    "https://static.guorou.net/davinci/component/DvVideoViewer/1622529288052/index.js",
+  ]);
   const context = useContext(core.AppContext) as any;
   const { state, dispatch } = context;
   const actionWrapRef = useRef<{ [key: string]: any }>();
@@ -57,44 +63,75 @@ export default () => {
   return (
     <React.Fragment>
       {" "}
-      <UI.DavinciPage
+      <UI.DvPage
         id="28"
         onClick={action["bb_cc"]}
         {...{ style: { position: "relative" } }}
       >
-        <UI.DavinciImage
+        <UI.DvImage
           id="1"
           onLoad={action["cc"]}
           onClick={action["bca84122a2a498e30300bce50b2ca490"]}
           {...{
             src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
           }}
-        ></UI.DavinciImage>
-        <UI.DavinciDiv
+        ></UI.DvImage>
+        <UI.DvDocViewer
+          id="31"
+          {...{
+            style: { height: "50%", width: "50%" },
+            list: [
+              {
+                name: "四年级英语深度课程EXCEL",
+                src: "https://static.guorou.net/davinci/test_doc/wps.xls",
+              },
+              {
+                name: "四年级英语深度课程PDF",
+                src: "https://static.guorou.net/davinci/test_doc/wps.pdf",
+              },
+              {
+                name: "四年级英语深度课程PPT",
+                src: "https://static.guorou.net/davinci/test_doc/wps.ppt",
+              },
+              {
+                name: "四年级英语深度课程WORD",
+                src: "https://static.guorou.net/davinci/test_doc/wps.doc",
+              },
+            ],
+          }}
+        ></UI.DvDocViewer>
+        <UI.DvVideoViewer
+          id="1"
+          {...{
+            src: "https://static.guorou.net/grow/grow_mp/video.mp4",
+            style: { height: "320px" },
+          }}
+        ></UI.DvVideoViewer>
+        <UI.DvDiv
           id="102"
           {...{ style: { height: "800px", border: "1px solid" } }}
-        ></UI.DavinciDiv>
-      </UI.DavinciPage>{" "}
+        ></UI.DvDiv>
+      </UI.DvPage>{" "}
       <React.Fragment>
         {" "}
         {/* fixed content */}{" "}
-        <UI.DavinciDiv id="29" {...{ style: { position: "fixed", bottom: 0 } }}>
-          <UI.DavinciImage
+        <UI.DvDiv id="29" {...{ style: { bottom: 0, position: "fixed" } }}>
+          <UI.DvImage
             id="21"
             {...{
               style: { width: "100px", height: "100px" },
               src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
             }}
-          ></UI.DavinciImage>
-          <UI.DavinciImage
+          ></UI.DvImage>
+          <UI.DvImage
             id="23"
             {...{
               style: { width: "100px", height: "100px" },
               src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
             }}
-          ></UI.DavinciImage>
-        </UI.DavinciDiv>
-        <UI.DavinciImage
+          ></UI.DvImage>
+        </UI.DvDiv>
+        <UI.DvImage
           id="22"
           {...{
             style: {
@@ -106,7 +143,7 @@ export default () => {
             },
             src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
           }}
-        ></UI.DavinciImage>{" "}
+        ></UI.DvImage>{" "}
       </React.Fragment>{" "}
     </React.Fragment>
   );
