@@ -9,7 +9,7 @@ import "./index.less";
 import { baseImage } from "../../constants/index";
 
 const EntryIcon = `${baseImage}/entry.png`;
-const BackIcon = `${baseImage}/entry.png`;
+const BackIcon = `${baseImage}/return.png`;
 const PdfIcon = `${baseImage}/pdf.png`;
 const WordIcon = `${baseImage}/word.png`;
 const ExcelIcon = `${baseImage}/excel.png`;
@@ -59,8 +59,8 @@ const loadScript = (src: string, cb: Function) => {
 function DocViewer(props: docProps) {
   const { list = [], ...p } = props;
   const [previewData, setPreviewData] = useState({
-    src: "",
-    name: "",
+    preSrc: "",
+    preDocName: "",
     isPreview: false,
   });
 
@@ -72,20 +72,23 @@ function DocViewer(props: docProps) {
       }
     );
   }, []);
-  const { isPreview, src, name } = previewData;
-
+  const { isPreview, preSrc, preDocName } = previewData;
   return (
-    <View className="dv_doc_viewer">
+    <View className="dv_doc_viewer" {...p}>
       {list.map(({ src = "", name }) => (
         <View
           className="doc_item"
           key={src}
           onClick={async () => {
+            const url = src.replace(
+              "https://static.guorou.net",
+              "oss://static-zy-com"
+            );
             const { data } = await axios.get(
               "http://portalhome.uae.shensz.local/davinciapi/api/1/core/util/office/preview_url",
               {
                 params: {
-                  url: "oss://static-zy-com/immtest.xlsx",
+                  url,
                 },
               }
             );
@@ -97,8 +100,8 @@ function DocViewer(props: docProps) {
               console.error(msg);
             }
             setPreviewData({
-              src,
-              name,
+              preSrc: src,
+              preDocName: name,
               isPreview: true,
             });
             // eslint-disable-next-line
@@ -126,14 +129,30 @@ function DocViewer(props: docProps) {
       {isPreview && (
         <View className="doc_preview_modal">
           <View className="doc_preview_header">
-            <Image className="doc_back_icon" src={BackIcon} />
-            <View className="doc_preview_title">{name}</View>
+            <Image
+              className="doc_back_icon"
+              onClick={() => {
+                setPreviewData({
+                  isPreview: false,
+                  preSrc: "",
+                  preDocName: "",
+                });
+              }}
+              src={BackIcon}
+            />
+            <View className="doc_preview_title">{preDocName}</View>
           </View>
           <div
             className="doc_iframe_container"
             id="aliyun_preview_iframe"
           ></div>
-          <Image className="doc_download_icon" src={DownloadIcon} />
+          <Image
+            onClick={() => {
+              window.location.href = preSrc;
+            }}
+            className="doc_download_icon"
+            src={DownloadIcon}
+          />
         </View>
       )}
     </View>

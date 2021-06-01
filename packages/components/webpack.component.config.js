@@ -26,7 +26,7 @@ module.exports = {
         },
       },
       {
-        test: /\.css?$/,
+        test: /\.less$/,
         include: [path.join(__dirname, "src")],
         use: [
           {
