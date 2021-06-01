@@ -1,7 +1,30 @@
-import React, { useState } from "react";
-import { View } from "@tarojs/components";
+import React, { useEffect, useState } from "react";
+import { View, Image } from "@tarojs/components";
+import axios from "axios";
+
+import "./index.less";
+
 // import { Document, Page } from "react-pdf";
-import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
+
+import { baseImage } from "../../constants/index";
+
+const EntryIcon = `${baseImage}/entry.png`;
+const BackIcon = `${baseImage}/entry.png`;
+const PdfIcon = `${baseImage}/pdf.png`;
+const WordIcon = `${baseImage}/word.png`;
+const ExcelIcon = `${baseImage}/excel.png`;
+const PPTIcon = `${baseImage}/ppt.png`;
+const DownloadIcon = `${baseImage}/download.png`;
+
+const IconDict = {
+  pdf: PdfIcon,
+  doc: WordIcon,
+  docx: WordIcon,
+  xls: ExcelIcon,
+  xlsx: ExcelIcon,
+  ppt: PPTIcon,
+  pptx: PPTIcon,
+};
 
 type docProps = {
   list: docItem[];
@@ -12,69 +35,107 @@ type docItem = {
   name: string;
 };
 
+const loadScript = (src: string, cb: Function) => {
+  return new Promise((resolve: Function, reject) => {
+    const _id = `__aliyun_web_office_sdk`;
+    if (document.querySelector(_id)) {
+      resolve();
+    } else {
+      const script = document.createElement("script");
+      script.id = _id;
+      script.src = src;
+      script.onload = () => {
+        resolve();
+        cb();
+      };
+      script.onerror = () => {
+        reject(`【${src}】下载失败`);
+      };
+      document.head.appendChild(script);
+    }
+  });
+};
+
 function DocViewer(props: docProps) {
   const { list = [], ...p } = props;
-  const [iframeSrc, setIframeSrc] = useState("");
-  const [numPages, setNumPages] = useState(null);
+  const [previewData, setPreviewData] = useState({
+    src: "",
+    name: "",
+    isPreview: false,
+  });
 
-  function onDocumentLoadSuccess({ numPages: nextNumPages }) {
-    setNumPages(nextNumPages);
-  }
+  useEffect(() => {
+    loadScript(
+      "//g.alicdn.com/IMM/office-js/1.1.9/aliyun-web-office-sdk.min.js",
+      () => {
+        console.log("done __aliyun_web_office_sdk");
+      }
+    );
+  }, []);
+  const { isPreview, src, name } = previewData;
 
   return (
-    <View
-      style={{
-        width: "100vw",
-      }}
-    >
-      {list.map(({ src, name }) => (
+    <View className="dv_doc_viewer">
+      {list.map(({ src = "", name }) => (
         <View
-          style={{
-            border: "1px solid",
-          }}
+          className="doc_item"
           key={src}
-          onClick={() => {
-            setIframeSrc(src);
+          onClick={async () => {
+            const { data } = await axios.get(
+              "http://portalhome.uae.shensz.local/davinciapi/api/1/core/util/office/preview_url",
+              {
+                params: {
+                  url: "oss://static-zy-com/immtest.xlsx",
+                },
+              }
+            );
+
+            let { code = -1, msg, data: res } = data;
+            const { PreviewURL, AccessToken } = res;
+            console.log(data, data.data);
+            if (code === -1) {
+              console.error(msg);
+            }
+            setPreviewData({
+              src,
+              name,
+              isPreview: true,
+            });
+            // eslint-disable-next-line
+            let instance = aliyun.config({
+              url: PreviewURL, //设置文档预览U  RL地址。
+              mount: document.querySelector("#aliyun_preview_iframe"),
+            });
+            instance.setToken({
+              token: AccessToken,
+            });
           }}
         >
-          {name}
+          <Image
+            className="doc_icon"
+            src={IconDict[(src.match(/.*\.(.*)$/) || ["", ""])[1]]}
+          />
+          <View className="doc_content">
+            <View className="doc_title">{name}</View>
+            <View className="doc_size">330M</View>
+          </View>
+          <Image className="entry_icon" src={EntryIcon} />
+          <View className="divider_down" />
         </View>
       ))}
-      {iframeSrc &&
-        (/.*\.pdf$/.test(iframeSrc) ? (
-          <div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Document
-                loading="加载中.."
-                file={iframeSrc}
-                onLoadSuccess={onDocumentLoadSuccess}
-              >
-                {Array.from(new Array(numPages), (_, index) => (
-                  <Page
-                    width={375}
-                    key={`page_${index + 1}`}
-                    pageNumber={index + 1}
-                  />
-                ))}
-              </Document>
-            </div>
-          </div>
-        ) : (
-          <View {...p}>
-            <iframe
-              src={iframeSrc}
-              width="100%"
-              height="100%"
-              frameBorder="1"
-            ></iframe>
+      {isPreview && (
+        <View className="doc_preview_modal">
+          <View className="doc_preview_header">
+            <Image className="doc_back_icon" src={BackIcon} />
+            <View className="doc_preview_title">{name}</View>
           </View>
-        ))}
+          <div
+            className="doc_iframe_container"
+            id="aliyun_preview_iframe"
+          ></div>
+          <Image className="doc_download_icon" src={DownloadIcon} />
+        </View>
+      )}
     </View>
   );
 }

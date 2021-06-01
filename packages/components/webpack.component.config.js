@@ -14,7 +14,7 @@ module.exports = {
     "@davinci/core": "davinciCore",
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx"],
+    extensions: [".tsx", ".ts", ".js", ".jsx", ".css"],
   },
   module: {
     rules: [
@@ -25,8 +25,32 @@ module.exports = {
           loader: "ts-loader",
         },
       },
+      {
+        test: /\.css?$/,
+        include: [path.join(__dirname, "src")],
+        use: [
+          {
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
+          },
+          {
+            loader: "less-loader",
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpe?g|gif|bpm|svg)(\?.*)?$/,
+        loader: "url-loader",
+        options: {
+          limit: 3000,
+          name: "img/[name].[ext]",
+        },
+      },
     ],
   },
+  watch: true,
   // devtool: "eval",
   devtool: "inline-source-map",
   mode: "development",

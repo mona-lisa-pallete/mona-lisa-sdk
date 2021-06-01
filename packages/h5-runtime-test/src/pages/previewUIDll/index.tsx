@@ -75,7 +75,7 @@ export default () => {
     "https://static.guorou.net/davinci/component/DvDiv/1622446464812/index.js",
     "https://static.guorou.net/davinci/component/DvPage/1622446449933/index.js",
     "https://static.guorou.net/davinci/component/DvModal/1622446479830/index.js",
-    "https://static.guorou.net/davinci/component/DvDocViewer/1622446494246/index.js",
+    "https://static.guorou.net/davinci/component/DvDocViewer/1622452459774/index.js",
   ]);
   const context = useContext(core.AppContext) as any;
   const { state, dispatch } = context;
