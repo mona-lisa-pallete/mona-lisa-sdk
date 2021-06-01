@@ -76,6 +76,7 @@ export default () => {
     "https://static.guorou.net/davinci/component/DvPage/1622446449933/index.js",
     "https://static.guorou.net/davinci/component/DvModal/1622446479830/index.js",
     "https://static.guorou.net/davinci/component/DvDocViewer/1622528317317/index.js",
+    "https://static.guorou.net/davinci/component/DvVideoViewer/1622529288052/index.js",
   ]);
   const context = useContext(core.AppContext) as any;
   const { state, dispatch } = context;
@@ -118,6 +119,12 @@ export default () => {
             height: "50%",
             width: "50%",
           },
+        }}
+      />
+      <UI_DLL.DvVideoViewer
+        src="https://static.guorou.net/grow/grow_mp/video.mp4"
+        style={{
+          height: "320px",
         }}
       />
       <Button onClick={action["id1_id2"]}>
