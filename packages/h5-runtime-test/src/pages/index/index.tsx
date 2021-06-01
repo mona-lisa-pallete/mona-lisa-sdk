@@ -1,127 +1,113 @@
 import React, { useContext, useRef } from "react";
-import * as UI from "@davinci/components";
 import * as core from "@davinci/core";
-
-import { Button, View } from "@tarojs/components";
-
 const rawAction = {
-  /* 打开新页面-bb */ bca84122a2a498e30300bce50b2ca490: [
-    {
-      fn: async function (args) {
-        const { dispatch } = args;
-        console.log(args);
-        const { modalId } = args.props;
-        const { [modalId]: curState } = args.stateRef.current;
-        // const res = await core.login(props.url, props.type);
-        // console.log("async res: ", res);
-        dispatch({
-          [modalId]: {
-            isOpen: curState ? !curState.isOpen : true,
-          },
-        });
-      },
-      prop: { modalId: "id_1", url: "path/a", type: "h5" },
+  /* 打开新页面-openPage */ cc: {
+    fn: () => {},
+    prop: { url: "path/a", type: "h5" },
+  },
+  /* 登录页面test-login */ bb: {
+    fn: async function (props) {
+      const res = await core.login(props.phone, props.password);
+      console.log("async res: ", res);
     },
-  ],
-  /* 打开新页面-bb */ b: [
-    {
-      fn: async function (args) {
-        const { dispatch, props } = args;
-        dispatch({ [props.modalId]: { isOpen: false } });
-
-        const res = await core.login(props.url, props.type);
-        console.log("async res: ", res);
-      },
-      prop: { modalId: "id_1", url: "path/a", type: "h5" },
+    prop: { phone: "${store.user.phone}", password: "${store.user.password}" },
+  },
+  /* 登录-login */ bca84122a2a498e30300bce50b2ca490: {
+    fn: async function (props) {
+      const res = await core.login(props.phone, props.password);
+      console.log("async res: ", res);
     },
-  ],
-
-  id1_id2: [
-    {
-      fn: async function (args) {
-        console.log("1", args);
-      },
-      prop: { url: "path/a", type: "h5" },
-    },
-    {
-      fn: async function (args) {
-        console.log("2", args);
-      },
-      prop: { url: "path/a", type: "h5" },
-    },
-  ],
+    prop: { phone: "${store.user.phone}", password: "${store.user.password}" },
+  },
 };
-
-const Foo = React.memo((props: any) => {
-  return <View onClick={props.onClick}>{+new Date()}</View>;
-});
-
-/**
- * 构建真正的action 字段
- */
-function initAction(dispatch: any, stateRef: any): { [key: string]: any } {
-  return Object.keys(rawAction).reduce((res, id) => {
-    const curActions = rawAction[id];
+/**       * 避免因运行时的动态函数组件导致'事件'每次变化，这里使用 dsl 编译时确定 function       */ const finalAction =
+  {
+    bb_cc: [rawAction["bb"], rawAction["cc"]],
+    cc: [rawAction["cc"]],
+    bca84122a2a498e30300bce50b2ca490: [
+      rawAction["bca84122a2a498e30300bce50b2ca490"],
+    ],
+  };
+/**       * 构建真正的action 字段       */ function initAction(dispatch: any): {
+  [key: string]: any;
+} {
+  return Object.keys(finalAction).reduce((res, id) => {
+    const curActions = finalAction[id];
     res[id] = (e) => {
       curActions.forEach((_action) => {
         const { fn, prop } = _action;
-        fn({ id, e, props: prop, dispatch, stateRef });
+        fn({ id, e, props: prop, dispatch });
       });
     };
     return res;
   }, {});
 }
-
 export default () => {
-  const [UI_DLL, isReady] = core.useWidget([
-    "https://static-zy-com.oss-cn-hangzhou.aliyuncs.com/davinci/component/DvImage/2021-05-30/index.js",
-  ]);
+  const [UI, isReady] = core.useWidget([]);
   const context = useContext(core.AppContext) as any;
   const { state, dispatch } = context;
   const actionWrapRef = useRef<{ [key: string]: any }>();
-  const stateRef = useRef<{ [key: string]: any }>();
+  if (!actionWrapRef.current) {
+    actionWrapRef.current = initAction(dispatch);
+  }
+  const action = actionWrapRef.current;
   if (!isReady) {
     return "加载中..";
   }
-  stateRef.current = state;
-  if (!actionWrapRef.current) {
-    actionWrapRef.current = initAction(dispatch, stateRef);
-  }
-  const action = actionWrapRef.current;
   return (
-    <UI.DvPage>
-      <UI.DvDocViewer
-        officeSrc="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fstatic.guorou.net%2Ftiku%2F2021%E5%AF%926%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6%E7%B2%BE%E8%8B%B1%E7%8F%AD%E8%AE%B2%E4%B9%89-%E7%AC%AC1%E8%AE%B2-%E5%88%86%E6%95%B0%E8%AE%A1%E7%AE%97%E7%BB%BC%E5%90%88.docx"
-        {...{
-          style: {
-            height: "50%",
-            width: "50%",
-          },
-        }}
-      />
-      <UI.DvDiv>
-        <pre>{JSON.stringify(state, null, 2)}</pre>
-      </UI.DvDiv>
-      <Button onClick={action["id1_id2"]}>
-        bca84122a2a498e30300bce50b2ca490
-      </Button>
-      <Button onClick={action["ccccccccc"]}>ccccccccc</Button>
-      <Foo onClick={action["b"]}>bbbbbbbbbbb</Foo>
-      <UI.DvImage
-        id="id_0"
-        onClick={action["bca84122a2a498e30300bce50b2ca490"]}
-        {...{
-          src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
-        }}
-      ></UI.DvImage>
-      <UI_DLL.DvImage
-        id="id_1"
-        onClick={action["bca84122a2a498e30300bce50b2ca490"]}
-        {...{
-          src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
-        }}
-      ></UI_DLL.DvImage>
-      <UI.DvModal id="id_1">hello from parent</UI.DvModal>
-    </UI.DvPage>
+    <React.Fragment>
+      {" "}
+      <UI.DavinciPage
+        id="28"
+        onClick={action["bb_cc"]}
+        {...{ style: { position: "relative" } }}
+      >
+        <UI.DavinciImage
+          id="1"
+          onLoad={action["cc"]}
+          onClick={action["bca84122a2a498e30300bce50b2ca490"]}
+          {...{
+            src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
+          }}
+        ></UI.DavinciImage>
+        <UI.DavinciDiv
+          id="102"
+          {...{ style: { height: "800px", border: "1px solid" } }}
+        ></UI.DavinciDiv>
+      </UI.DavinciPage>{" "}
+      <React.Fragment>
+        {" "}
+        {/* fixed content */}{" "}
+        <UI.DavinciDiv id="29" {...{ style: { position: "fixed", bottom: 0 } }}>
+          <UI.DavinciImage
+            id="21"
+            {...{
+              style: { width: "100px", height: "100px" },
+              src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
+            }}
+          ></UI.DavinciImage>
+          <UI.DavinciImage
+            id="23"
+            {...{
+              style: { width: "100px", height: "100px" },
+              src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
+            }}
+          ></UI.DavinciImage>
+        </UI.DavinciDiv>
+        <UI.DavinciImage
+          id="22"
+          {...{
+            style: {
+              position: "fixed",
+              top: 0,
+              right: 0,
+              width: "100px",
+              height: "100px",
+            },
+            src: "https://static.guorou.net/upload_collection/202125/3d6dbc359b7181614943756062.png",
+          }}
+        ></UI.DavinciImage>{" "}
+      </React.Fragment>{" "}
+    </React.Fragment>
   );
 };

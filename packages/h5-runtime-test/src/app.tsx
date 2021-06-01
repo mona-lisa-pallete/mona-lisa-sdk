@@ -1,17 +1,9 @@
-import React, { useReducer } from "react";
-import { AppContext } from "@davinci/core";
+import React from "react";
+import { DvProvider } from "@davinci/core";
 import "./app.less";
 
 const App = (props) => {
-  const [state, dispatch] = useReducer((s, action) => {
-    return { ...s, ...action };
-  }, {});
-
-  return (
-    <AppContext.Provider value={{ state, dispatch }}>
-      {props.children}
-    </AppContext.Provider>
-  );
+  return <DvProvider>{props.children}</DvProvider>;
 };
 
 export default App;
