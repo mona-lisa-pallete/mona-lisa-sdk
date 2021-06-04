@@ -1,4 +1,4 @@
-import qs from "query-string";
+import queryString from "query-string";
 import Taro from "@tarojs/taro";
 import { IS_H5 } from ".";
 
@@ -30,28 +30,24 @@ export function buildParams(param) {
       .join("&")
   );
 }
-/**
- * 获取应用的路由参数
- * 兼容小程序与H5端
- */
-export const getRouterParams = () => {
-  let params;
-  if (IS_H5) {
-    params = qs.parse(window.location.search);
-  } else {
-    params = Taro.getCurrentInstance().router?.params;
-  }
-  if (!params) {
-    // cf ref: http://doc.shensz.local/x/k1r0B
-    const errStr =
-      '在切换小程序到后台的一瞬间前后或在应用刚开始初始化时，尝试获取路由参数会为"undefined"';
-    if (process.env.NODE_ENV === "development") {
-      Taro.showToast({
-        title: errStr,
-        duration: 2000,
-      });
-    }
-    console.info(errStr);
-  }
-  return params;
+
+export const getUrlWithQuery = (
+  urlWithParams: string,
+  params?: Partial<Record<string, string>>
+): string => {
+  const { url, query } = queryString.parseUrl(urlWithParams);
+
+  const queryObj = {
+    ...(params || {}),
+    ...query,
+  };
+
+  const stringified = queryString.stringify(queryObj);
+  return stringified ? `${url.replace(/(.*?)\/$/, "$1")}?${stringified}` : url;
 };
+
+export function userParams() {
+  const p = Taro.useRouter()?.params;
+  delete p.$taroTimestamp;
+  return p;
+}
