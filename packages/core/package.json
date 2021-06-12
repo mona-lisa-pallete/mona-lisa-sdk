@@ -12,10 +12,11 @@
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "lib",
+    "esm"
   ],
   "publishConfig": {
-    "access": "public"
+    "registry": "http://r.npm.guorou.net"
   },
   "repository": {
     "type": "git",
