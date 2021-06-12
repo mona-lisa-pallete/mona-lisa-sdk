@@ -29,7 +29,9 @@ function useWidget(dllCdnPaths) {
     if (Array.isArray(dllCdnPaths) && dllCdnPaths.length > 0) {
       dllCdnPaths.forEach((url) => {
         // e.g. url: https://static-zy-com.oss-cn-hangzhou.aliyuncs.com/davinci/component/DvImage/20210521165439/index.js
-        const id = url.match(/component\/(.*?)\//)[1];
+        const id =
+          url.match(/component\/(.*?)\//)?.[1] ||
+          url.match(/.*\/(.*?)\.js$/)[1];
         requestQueue.push(
           loadScript(url, id, () => {
             UIColl[id] = window?.[id]["default"] || "div";
