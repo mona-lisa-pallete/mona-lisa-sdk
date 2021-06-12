@@ -9,18 +9,31 @@ export function showToast(msg: string) {
   });
 }
 
+export enum PageType {
+  InternalPage = "internalPage",
+  H5 = "h5",
+  Mini = "mini",
+}
+
 type navigateParam = {
-  jumpMethod: "h5" | "mini";
+  navigateType: PageType;
   url: string;
   id: string;
 };
-export function navigateTo(params: navigateParam) {
-  const { jumpMethod, url } = params;
+const navigateTypeFieldName = "navigateType";
 
-  if (jumpMethod === "h5") {
+export function navigateTo(params: navigateParam) {
+  const { [navigateTypeFieldName]: navigateType, url } = params;
+
+  if (navigateType === PageType.H5) {
     useH5Navigate(url);
-  } else if (jumpMethod === "mini") {
+  } else if (navigateType === PageType.Mini) {
     miniNavigate(url);
+  } else {
+    Taro.showToast({
+      icon: "none",
+      title: `暂不支持${navigateType}类型跳转`,
+    });
   }
 }
 
