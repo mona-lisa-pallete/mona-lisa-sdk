@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "elementRef": "DvVideoVertical",
+  "logo": "https://static.guorout.net/davinci/assets/images/provider/video_portrait.png",
+  "label": "竖屏全屏视频",
+  "eventAttr": [],
+  "propFormConfig": {
+    "useSystemForm": true,
+    "useCustomForm": true,
+    "customFormRef": "DvVideoVerticalForm"
+  }
+}
