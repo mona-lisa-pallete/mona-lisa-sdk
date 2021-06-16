@@ -38,7 +38,7 @@ export const randomKey = () => {
   return Math.floor(2147483648 * Math.random()).toString(16);
 };
 
-export default function sendEvenLog(
+export default function trackLog(
   params: any = { e_n: null },
   queryObj?: any // 避免 getAppInstanceParams 引用循环调用
 ) {
