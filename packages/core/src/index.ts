@@ -1,4 +1,4 @@
-export { getAppContext, dvConnect, DvProvider,  } from "./context";
+export { getAppContext, dvConnect, DvProvider, AppContext } from "./context";
 export { default as login } from "./login";
 export { default as trackLog } from "./trackLog";
 export { default as useWidget } from "./hooks/useWidget";

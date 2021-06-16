@@ -25,7 +25,7 @@ export function getAppContext() {
  */
 export function dvConnect(Components: FC, selector: any) {
   return (props: any): ReactElement => {
-    const { state, setAppData } = getAppContext();
+    const { state, setAppData } = useContext(AppContext);
     const deps = selector(state)(props);
     return useMemo(
       () => <Components setAppData={setAppData} {...props} {...deps} />,
