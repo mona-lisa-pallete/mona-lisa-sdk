@@ -5,5 +5,7 @@ function isNumber(n: any): n is Number {
 }
 
 export function dvPxTransform(size?: string | number) {
-  return isNumber(size) ? pxTransform(size) : size;
+  // 为了适配低版本 pxTransform，添加第二参数
+  // 为了适配B端图片使用，这里乘以2
+  return isNumber(size) ? pxTransform(size * 2, 750) : size;
 }
