@@ -3,6 +3,7 @@ import Storage from "../utils/storage";
 import { LOCAL_KEY_OPENID, SESSION_ID, USER_ID } from "../constants";
 import { collectUrl } from "../config/api";
 import { buildParams, getAppInstancePath } from "../utils/router";
+import { getPageData } from "../context/globalData";
 
 function sendInH5(url: string, params = {}) {
   let image: any = new Image();
@@ -67,6 +68,8 @@ export default function trackLog(
       ...queryObj,
       ...params,
     })}`,
+    page_id: getPageData().pageId,
+    page_name: getPageData().pageName,
     ...params,
   };
 
