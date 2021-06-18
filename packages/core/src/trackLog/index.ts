@@ -4,6 +4,7 @@ import { LOCAL_KEY_OPENID, SESSION_ID, USER_ID } from "../constants";
 import { collectUrl } from "../config/api";
 import { buildParams, getAppInstancePath } from "../utils/router";
 import { getPageData } from "../context/globalData";
+import { IS_H5 } from "../utils/index";
 
 function sendInH5(url: string, params = {}) {
   let image: any = new Image();
@@ -81,8 +82,15 @@ export default function trackLog(
     logParams = merge(logParams.other, logParams);
     delete logParams.other;
   }
-
-  sendInH5(collectUrl, logParams);
+  if (IS_H5) {
+    sendInH5(collectUrl, logParams);
+  } else {
+    Taro.request({
+      method: "GET",
+      url: collectUrl,
+      data: logParams,
+    });
+  }
 
   if (process.env.NODE_ENV === "development") {
     console.groupCollapsed(`%c${logParams.e_n}`, "font-weight: bold;");
