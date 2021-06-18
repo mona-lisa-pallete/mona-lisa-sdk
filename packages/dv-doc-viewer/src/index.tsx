@@ -152,6 +152,8 @@ function DvDocViewer(props: docProps) {
       }
     );
   }, []);
+  const { debug = "" } = Taro.useRouter()?.params || {};
+
   const { isPreview, preSrc, preDocName } = previewData;
   return (
     <View className="dv_doc_viewer" {...p}>
@@ -165,10 +167,9 @@ function DvDocViewer(props: docProps) {
                 "https://static.guorou.net",
                 "oss://static-zy-com"
               );
-
               const { data } = await Taro.request({
                 method: "GET",
-                url: "http://portalhome.uae.shensz.local/davinciapi/api/1/core/util/office/preview_url",
+                url: "https://portal.guorou.net/davinciapi/api/1/core/util/office/preview_url",
                 data: {
                   url,
                 },
@@ -186,7 +187,9 @@ function DvDocViewer(props: docProps) {
                     PreviewURL
                   )}&imm_token=${encodeURIComponent(
                     AccessToken
-                  )}&title=${name}&file_url=${encodeURIComponent(src)}`,
+                  )}&title=${name}&file_url=${encodeURIComponent(
+                    src
+                  )}&debug=${debug}`,
                 });
                 return;
               }
