@@ -83,6 +83,9 @@ function formatKB(kb: number, decimals = 2) {
 }
 
 const loadScript = (src: string, cb: Function) => {
+  if (!IS_H5) {
+    return;
+  }
   return new Promise((resolve: Function, reject) => {
     const _id = `__aliyun_web_office_sdk`;
     if (document.querySelector(_id)) {
@@ -177,6 +180,16 @@ function DvDocViewer(props: docProps) {
               if (code === -1) {
                 console.error(msg);
               }
+              if (!IS_H5) {
+                Taro.navigateTo({
+                  url: `/pages/office/index?imm_url=${encodeURIComponent(
+                    PreviewURL
+                  )}&imm_token=${encodeURIComponent(
+                    AccessToken
+                  )}&title=${name}&file_url=${encodeURIComponent(src)}`,
+                });
+                return;
+              }
               setPreviewData({
                 preSrc: src,
                 preDocName: name,
@@ -203,7 +216,7 @@ function DvDocViewer(props: docProps) {
             <View className="divider_down" />
           </View>
         ))}
-      {isPreview && (
+      {IS_H5 && isPreview && (
         <View className="doc_preview_modal">
           <View className="doc_preview_header">
             <Image
