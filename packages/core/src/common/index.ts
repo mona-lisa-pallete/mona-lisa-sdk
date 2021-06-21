@@ -44,8 +44,8 @@ function miniNavigate(url: string) {
 }
 
 function useH5Navigate(url: string) {
-  const reg = /sell(\.dev)?\.guorou\.net(\/dv(.*))/; // hotfix:  应用内跳转必须为 /g
-  const isInternalHost = reg.test(url);
+  // const reg = /sell(\.dev)?\.guorou\.net(\/dv(.*))/; // hotfix:  应用内跳转必须为 /g
+  const isInternalHost = url.indexOf('http') === -1;
   const parsedUrl = getUrlWithQuery(url);
   if (isInternalHost) {
     Taro.navigateTo({
