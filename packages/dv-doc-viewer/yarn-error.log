@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/ray/.nvm/versions/node/v12.14.0/bin/node /usr/local/Cellar/yarn/1.22.10/libexec/bin/yarn.js add @davinci/core
+  /Users/ray/.nvm/versions/node/v12.14.0/bin/node /usr/local/Cellar/yarn/1.22.10/libexec/bin/yarn.js add @gr-davinci/core
 
 PATH: 
   /Users/ray/opt/chrome/depot_tools:/Users/ray/.nvm/versions/node/v12.14.0/bin:/Users/ray/opt/chrome/depot_tools:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/aria2/bin:/usr/local/share/dotnet:/opt/X11/bin:/Library/Apple/usr/bin:/Applications/Wireshark.app/Contents/MacOS

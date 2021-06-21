@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import * as core from "@davinci/core";
+import * as core from "@gr-davinci/core";
 const rawAction = {
   /* 打开新页面-openPage */ cc: {
     fn: () => {},

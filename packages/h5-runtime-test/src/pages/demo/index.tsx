@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 // import * as UI from '@davinci/components';
-import * as core from "@davinci/core";
+import * as core from "@gr-davinci/core";
 
 const rawAction = {
   /* 打开新页面-toast */ 2: { fn: () => {}, prop: {} },

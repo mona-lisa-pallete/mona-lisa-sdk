@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import * as core from "@davinci/core";
+import * as core from "@gr-davinci/core";
 
 import { Button, View } from "@tarojs/components";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, View } from "@tarojs/components";
-import { sendEvenLog, dvConnect } from "@davinci/core";
+import { sendEvenLog, dvConnect } from "@gr-davinci/core";
 
 type DvImageProps = {
   id: string;

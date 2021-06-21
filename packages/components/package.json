@@ -53,7 +53,7 @@
   ],
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "@davinci/core": "^0.0.1",
+    "@gr-davinci/core": "^0.0.1",
     "@tarojs/components": "3.2.8",
     "@tarojs/react": "3.2.8",
     "@tarojs/runtime": "3.2.8",

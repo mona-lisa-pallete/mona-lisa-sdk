@@ -11,7 +11,7 @@ module.exports = {
     "@tarojs/taro": "taroVendor.taro",
     "@tarojs/components/loader": "taroVendor",
 
-    "@davinci/core": "davinciCore",
+    "@gr-davinci/core": "davinciCore",
   },
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".jsx", ".css"],

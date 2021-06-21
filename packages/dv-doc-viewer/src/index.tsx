@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Image } from "@tarojs/components";
 import Taro from "@tarojs/taro";
-import { sendEvenLog } from "@davinci/core";
+import { sendEvenLog } from "@gr-davinci/core";
 
 const IS_H5 = process.env.TARO_ENV === "h5";
 

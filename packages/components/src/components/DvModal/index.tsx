@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from "react";
 import { Button, View } from "@tarojs/components";
-import { AppContext } from "@davinci/core";
+import { AppContext } from "@gr-davinci/core";
 
 const Modal = (props) => {
   const { state, dispatch } = useContext(AppContext);
