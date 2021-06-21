@@ -52,6 +52,6 @@ function useH5Navigate(url: string) {
       url: parsedUrl,
     });
   } else {
-    window.location.href = parsedUrl;
+    window.location.href = url;
   }
 }
