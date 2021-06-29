@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from "react";
-// import * as UI from '@davinci/components';
+// import * as UI from '@gr-davinci/components';
 import * as core from "@gr-davinci/core";
 
 const rawAction = {

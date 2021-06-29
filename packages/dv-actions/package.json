@@ -1,6 +1,6 @@
 {
-  "name": "@gr-davinci-components/dv-doc-viewer",
-  "version": "0.0.8",
+  "name": "@gr-davinci/actions",
+  "version": "0.0.5",
   "description": "> TODO: description",
   "author": "陈炳瑞 <chenbingrui@guorou.tv>",
   "homepage": "",
@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "react": "^17.0.0",
-    "@gr-davinci/core": "^0.0.18",
     "ts-loader": "^9.2.1",
     "webpack": "^5.37.1",
     "webpack-cli": "^4.7.0"

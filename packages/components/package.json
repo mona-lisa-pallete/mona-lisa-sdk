@@ -1,5 +1,5 @@
 {
-  "name": "@davinci/components",
+  "name": "@gr-davinci/components",
   "version": "0.0.1",
   "description": "> TODO: description",
   "author": "陈炳瑞 <chenbingrui@guorou.tv>",
@@ -53,7 +53,7 @@
   ],
   "dependencies": {
     "@babel/runtime": "^7.7.7",
-    "@gr-davinci/core": "^0.0.1",
+    "@gr-davinci/core": "^0.0.18",
     "@tarojs/components": "3.2.8",
     "@tarojs/react": "3.2.8",
     "@tarojs/runtime": "3.2.8",

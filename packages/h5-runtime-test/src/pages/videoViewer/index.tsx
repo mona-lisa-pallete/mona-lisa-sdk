@@ -1,5 +1,5 @@
 import React from "react";
-import * as UI from "@davinci/components";
+import * as UI from "@gr-davinci/components";
 import { Button } from "@tarojs/components";
 
 export default () => {

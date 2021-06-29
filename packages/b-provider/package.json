@@ -21,7 +21,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@davinci/components": "^0.0.1",
+    "@gr-davinci/components": "^0.0.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   }

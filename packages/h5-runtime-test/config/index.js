@@ -65,7 +65,7 @@ const config = {
       chain.mode("development");
 
       chain.externals({
-        // "@davinci/components": "davinciComponents",
+        // "@gr-davinci/components": "davinciComponents",
         "@gr-davinci/core": "davinciCore",
         react: "reactVendor.React",
         "react-dom": "reactVendor.ReactDOM",
