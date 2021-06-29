@@ -17,18 +17,27 @@ export enum PageType {
 
 type navigateParam = {
   navigateType: PageType;
-  url: string;
+  envVersion: "develop" | "trial" | "release";
+  appId: string;
+  urlH5: string;
+  urlMini: string;
   id: string;
 };
 const navigateTypeFieldName = "navigateType";
 
 export function navigateTo(params: navigateParam) {
-  const { [navigateTypeFieldName]: navigateType, url } = params;
+  const {
+    [navigateTypeFieldName]: navigateType,
+    urlH5,
+    urlMini,
+    appId,
+    envVersion = "release",
+  } = params;
 
   if (navigateType === PageType.H5) {
-    useH5Navigate(url);
+    useH5Navigate(urlH5);
   } else if (navigateType === PageType.Mini) {
-    miniNavigate(url);
+    miniNavigate(urlMini, appId, envVersion);
   } else {
     Taro.showToast({
       icon: "none",
@@ -37,15 +46,30 @@ export function navigateTo(params: navigateParam) {
   }
 }
 
-function miniNavigate(url: string) {
-  Taro.navigateTo({
-    url,
-  });
+function miniNavigate(
+  path: string,
+  appId?: string,
+  envVersion?: "develop" | "trial" | "release"
+) {
+  if (appId) {
+    Taro.navigateToMiniProgram({
+      appId,
+      path,
+      envVersion,
+      success: function () {
+        // 打开成功
+      },
+    });
+  } else {
+    Taro.navigateTo({
+      url: path,
+    });
+  }
 }
 
 function useH5Navigate(url: string) {
   // const reg = /sell(\.dev)?\.guorou\.net(\/dv(.*))/; // hotfix:  应用内跳转必须为 /g
-  const isInternalHost = url.indexOf('http') === -1;
+  const isInternalHost = url.indexOf("http") === -1;
   const parsedUrl = getUrlWithQuery(url);
   if (isInternalHost) {
     Taro.navigateTo({
