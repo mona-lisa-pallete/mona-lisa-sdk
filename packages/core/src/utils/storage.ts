@@ -1,7 +1,7 @@
 import { IS_H5 } from "./index";
 import Taro from "@tarojs/taro";
 
-export const setStorageSync = (key, value) => {
+export const dvSetStorageSync = (key, value) => {
   if (IS_H5) {
     if (typeof value === "object") {
       return window.localStorage.setItem(key, JSON.stringify(value));
@@ -20,7 +20,7 @@ export function isStorageWithKey(key: string) {
   );
 }
 
-export const getStorageSync = (key) => {
+export const dvGetStorageSync = (key) => {
   if (IS_H5) {
     let value = window.localStorage.getItem(key);
     let data;
@@ -40,16 +40,10 @@ export const getStorageSync = (key) => {
   }
 };
 
-export const removeStorageSync = (key) => {
+export const dvRemoveStorageSync = (key) => {
   if (IS_H5) {
     return window.localStorage.removeItem(key);
   } else {
     return Taro.removeStorageSync(key);
   }
-};
-
-export default {
-  setStorageSync,
-  getStorageSync,
-  removeStorageSync,
 };

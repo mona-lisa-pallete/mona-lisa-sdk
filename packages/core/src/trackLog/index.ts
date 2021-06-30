@@ -1,10 +1,10 @@
 import Taro from "@tarojs/taro";
-import Storage from "../utils/storage";
 import { LOCAL_KEY_OPENID, SESSION_ID, USER_ID } from "../constants";
 import { collectUrl } from "../config/api";
 import { buildParams, getAppInstancePath } from "../utils/router";
 import { getPageData } from "../context/globalData";
 import { IS_H5 } from "../utils/index";
+import { dvGetStorageSync, dvSetStorageSync } from "../utils/storage";
 
 function sendInH5(url: string, params = {}) {
   let image: any = new Image();
@@ -46,15 +46,14 @@ export default function trackLog(
 ) {
   // 未登录情况下获取sessionId
   let sessionId =
-    Storage.getStorageSync(SESSION_ID) ||
-    Storage.getStorageSync(LOCAL_KEY_OPENID); // 避免只写了 openId 而未写 sessionId.
+    dvGetStorageSync(SESSION_ID) || dvGetStorageSync(LOCAL_KEY_OPENID); // 避免只写了 openId 而未写 sessionId.
   if (!sessionId) {
     sessionId = random128Key();
     // Taro.setStorage({ key: SESSION_ID, data: sessionId });
-    Storage.setStorageSync(SESSION_ID, sessionId);
+    dvSetStorageSync(SESSION_ID, sessionId);
   }
 
-  const uid = Storage.getStorageSync(USER_ID) || null;
+  const uid = dvGetStorageSync(USER_ID) || null;
   let e_params = {
     p: "sell_web_grow",
     v: "1.0.0",

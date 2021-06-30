@@ -9,3 +9,8 @@ export { default as trackLog } from "./trackLog";
 export { default as useWidget } from "./hooks/useWidget";
 export { navigateTo as navigateTo, showToast } from "./common";
 export { dvPxTransform } from "./utils/transform";
+export {
+  judgeLoginStatus,
+  setUserInfoFromStorage,
+  getUserInfoFromStorage,
+} from "./utils/userStorage";
