@@ -1,39 +1,51 @@
-import queryString from "query-string";
-import Taro from "@tarojs/taro";
-import { IS_H5 } from ".";
+import queryString from 'query-string';
+import Taro from '@tarojs/taro';
+import { IS_H5 } from '.';
+import { merge } from '../trackLog';
 
 export const getAppInstancePath = () => {
   if (IS_H5) {
     return window.location.pathname;
   }
   const pages = Taro.getCurrentPages();
-  let path = "";
+  let path = '';
   if (pages && pages.length > 0) {
     const currentPage = pages[pages.length - 1];
     path = `/${currentPage && currentPage.route}`;
   } else {
-    console.error("获取 path 失败");
+    console.error('获取 path 失败');
   }
   return path;
 };
 
 export function buildParams(param) {
   if (!param) {
-    return "";
+    return '';
   }
   delete param.nv_toString;
+
+  let logParams = param;
+  // 把所有参数拼接到url上，仅作打点归档
+  if (
+    logParams.other &&
+    Object.prototype.toString.call(logParams.other) === '[object Object]'
+  ) {
+    logParams = merge(logParams.other, logParams);
+    delete logParams.other;
+  }
+
   return (
-    "?" +
-    Object.keys(param)
+    '?' +
+    Object.keys(logParams)
       .reverse()
-      .map((name) => `${name}=${param[name]}`)
-      .join("&")
+      .map((name) => `${name}=${logParams[name]}`)
+      .join('&')
   );
 }
 
 export const getUrlWithQuery = (
   urlWithParams: string,
-  params?: Partial<Record<string, string>>
+  params?: Partial<Record<string, string>>,
 ): string => {
   const { url, query } = queryString.parseUrl(urlWithParams);
 
@@ -43,11 +55,5 @@ export const getUrlWithQuery = (
   };
 
   const stringified = queryString.stringify(queryObj);
-  return stringified ? `${url.replace(/(.*?)\/$/, "$1")}?${stringified}` : url;
+  return stringified ? `${url.replace(/(.*?)\/$/, '$1')}?${stringified}` : url;
 };
-
-export function userParams() {
-  const p = Taro.useRouter()?.params;
-  delete p.$taroTimestamp;
-  return p;
-}

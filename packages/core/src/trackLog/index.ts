@@ -104,7 +104,7 @@ export default function trackLog(
  * @param o2
  * @returns {{}}
  */
-function merge(o1, o2) {
+export function merge(o1, o2) {
   if (!o1) {
     return o2;
   }
