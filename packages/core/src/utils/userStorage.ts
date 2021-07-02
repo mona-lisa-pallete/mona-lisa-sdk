@@ -31,7 +31,9 @@ export const judgeLoginStatus = () => {
       isLogin = false;
     }
   } else if (dvGetStorageSync(LOCAL_KEY_TOKEN)) {
-    isLogin = true;
+    if (dvGetStorageSync(USER_INFO)?.userId) {
+      isLogin = true;
+    }
   }
   // if (!IS_H5) {
   //   // TODO: 小程序必须有 openId
