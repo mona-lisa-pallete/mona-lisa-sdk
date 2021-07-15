@@ -1,8 +1,8 @@
-import Taro from "@tarojs/taro";
+import { SDKUtils } from "../utils";
 import { getUrlWithQuery } from "../utils/router";
 
 export function showToast(msg: string) {
-  Taro.showToast({
+  SDKUtils.showToast({
     title: String(msg),
     icon: "none",
     duration: 1500,
@@ -39,7 +39,7 @@ export function navigateTo(params: navigateParam) {
   } else if (navigateType === PageType.Mini) {
     miniNavigate(urlMini, appId, envVersion);
   } else {
-    Taro.showToast({
+    SDKUtils.showToast({
       icon: "none",
       title: `暂不支持${navigateType}类型跳转`,
     });
@@ -52,7 +52,7 @@ function miniNavigate(
   envVersion?: "develop" | "trial" | "release"
 ) {
   if (appId) {
-    Taro.navigateToMiniProgram({
+    SDKUtils.navigateToMiniProgram({
       appId,
       path,
       envVersion,
@@ -61,7 +61,7 @@ function miniNavigate(
       },
     });
   } else {
-    Taro.navigateTo({
+    SDKUtils.navigateTo({
       url: path,
     });
   }
@@ -72,7 +72,7 @@ function useH5Navigate(url: string) {
   const isInternalHost = url.indexOf("http") === -1;
   const parsedUrl = getUrlWithQuery(url);
   if (isInternalHost) {
-    Taro.navigateTo({
+    SDKUtils.navigateTo({
       url: parsedUrl,
     });
   } else {

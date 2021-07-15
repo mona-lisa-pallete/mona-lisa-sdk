@@ -16,22 +16,19 @@ module.exports = {
     "react-dom": "reactVendor.ReactDOM",
     react: "reactVendor.React",
     "@tarojs/components": "taroVendor.components",
-    "@tarojs/taro": "taroVendor.taro",
     "@tarojs/runtime": "taroVendor.runtime",
   },
   resolve: {
     extensions: [".ts", ".js", ".tsx", ".jsx"],
   },
   module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        include: [path.join(__dirname, "src")],
-        use: {
-          loader: "ts-loader",
-        },
+    rules: [{
+      test: /\.tsx?$/,
+      include: [path.join(__dirname, "src")],
+      use: {
+        loader: "ts-loader",
       },
-    ],
+    }, ],
   },
   // devtool: "eval",
   devtool: "inline-source-map",

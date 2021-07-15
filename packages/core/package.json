@@ -1,11 +1,11 @@
 {
-  "name": "@gr-davinci/core",
-  "version": "0.0.21",
+  "name": "@monalisa-lowcode/core",
+  "version": "0.0.22",
   "description": "> TODO: description",
   "author": "陈炳瑞 <chenbingrui@guorou.tv>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/davinciCore.dll.js",
+  "main": "dist/index.js",
   "module": "esm/index.js",
   "directories": {
     "lib": "lib",
@@ -16,7 +16,7 @@
     "esm"
   ],
   "publishConfig": {
-    "registry": "http://r.npm.guorou.net"
+    "registry": "https://registry.npmjs.org"
   },
   "repository": {
     "type": "git",
@@ -25,12 +25,11 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "dev": "tsc --project ./tsconfig.build.json --watch --incremental",
+    "release": "npm publish --access public",
     "build:core:h5": "type=h5 webpack --config ./webpack.core.config.js",
     "build:core:weapp": "type=weapp webpack --config ./webpack.core.config.js"
   },
   "peerDependencies": {
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
   },
   "devDependencies": {
     "ts-loader": "^9.2.1",
@@ -38,6 +37,8 @@
     "webpack-cli": "^4.7.0"
   },
   "dependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "query-string": "^7.0.0"
   }
 }

@@ -1,9 +1,8 @@
-import Taro from "@tarojs/taro";
 import { LOCAL_KEY_OPENID, SESSION_ID, USER_ID } from "../constants";
 import { collectUrl } from "../config/api";
 import { buildParams, getAppInstancePath } from "../utils/router";
 import { getPageData } from "../context/globalData";
-import { IS_H5 } from "../utils/index";
+import { IS_H5, SDKUtils } from "../utils/index";
 import { dvGetStorageSync, dvSetStorageSync } from "../utils/storage";
 
 function sendInH5(url: string, params = {}) {
@@ -84,7 +83,7 @@ export default function trackLog(
   if (IS_H5) {
     sendInH5(collectUrl, logParams);
   } else {
-    Taro.request({
+    SDKUtils.request({
       method: "GET",
       url: collectUrl,
       data: logParams,
